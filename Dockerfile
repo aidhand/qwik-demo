@@ -19,7 +19,11 @@ RUN pnpm install
 COPY --chown=node:node . .
 
 # Build app
+RUN pnpm prisma generate
 RUN pnpm run build
+
+# Remove dev dependencies
+RUN pnpm prune --prod
 
 # Expose port
 EXPOSE 3000

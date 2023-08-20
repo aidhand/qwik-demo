@@ -4,9 +4,14 @@ import {
   RouterOutlet,
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
-import { RouterHead } from "./components/router-head/router-head";
+import { RouterHead } from "~/components/router/head";
 
-import "./global.css";
+import "@unocss/reset/tailwind-compat.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "uno.css";
 
 export default component$(() => {
   /**
