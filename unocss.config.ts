@@ -5,4 +5,9 @@ export default defineConfig({
     filesystem: ["./src/**/*.{js,jsx,ts,tsx}"],
   },
   presets: [presetUno()],
+  theme: {
+    colors: {
+      primary: "#4f46e5",
+    },
+  },
 });

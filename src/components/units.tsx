@@ -9,7 +9,7 @@ export const Units = component$((props: { data: Unit[] }) => {
       <nav class="flex flex-col gap-4">
         {props.data.map((unit) => (
           <Link
-            href={`/${unit.code}`}
+            href={`/u/${unit.id}`}
             key={unit.id}
             class="p-4 bg-gray-100 hover:bg-gray-200"
           >

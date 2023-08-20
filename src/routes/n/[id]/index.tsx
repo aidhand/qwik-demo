@@ -26,7 +26,10 @@ export default component$(() => {
   return (
     <>
       <PageHead title={note.value.name}>
-        <Link href="/">Back to dashboard</Link>
+        <div class="flex flex-row items-center gap-8">
+          <Link href="/n/new">New note</Link>
+          <Link href="/">Back to dashboard</Link>
+        </div>
       </PageHead>
       <div class="">
         <p>{note.value.content}</p>
@@ -35,12 +38,9 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: "note",
-  meta: [
-    {
-      name: "description",
-      content: "description",
-    },
-  ],
+export const head: DocumentHead = ({ resolveValue }) => {
+  const note = resolveValue(useNoteLoader);
+  return {
+    title: `Note "${note.name}"`,
+  };
 };

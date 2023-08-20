@@ -35,12 +35,9 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: "task",
-  meta: [
-    {
-      name: "description",
-      content: "description",
-    },
-  ],
+export const head: DocumentHead = ({ resolveValue }) => {
+  const task = resolveValue(useTaskLoader);
+  return {
+    title: `Task "${task.name}"`,
+  };
 };

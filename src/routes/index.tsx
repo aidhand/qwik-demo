@@ -1,7 +1,7 @@
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { Link, routeLoader$ } from "@builder.io/qwik-city";
 
 import { prisma } from "~/utils/prisma.server";
 import { Units } from "~/components/units";
@@ -30,18 +30,15 @@ export default component$(() => {
     <>
       <PageHead title="Dashboard">
         <div class="flex flex-row gap-8">
-          <a href="" class="text-center">
+          <Link href="" class="text-center">
             New task
-          </a>
-          <a href="" class="text-center">
+          </Link>
+          <Link href="" class="text-center">
             New note
-          </a>
-          <a href="" class="text-center">
+          </Link>
+          <Link href="" class="text-center">
             Quick study
-          </a>
-          <a href="" class="text-center">
-            Settings
-          </a>
+          </Link>
         </div>
       </PageHead>
 
@@ -74,11 +71,5 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
-  meta: [
-    {
-      name: "description",
-      content: "Qwik site description",
-    },
-  ],
+  title: "Dashboard",
 };

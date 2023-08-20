@@ -8,11 +8,7 @@ export const Tasks = component$((props: { data: Task[] }) => {
     <section>
       <nav>
         {props.data.map((task) => (
-          <Link
-            href={`/tasks/${task.id}`}
-            key={task.id}
-            class="my-2 block w-full"
-          >
+          <Link href={`/t/${task.id}`} key={task.id} class="my-2 block w-full">
             {task.name}
           </Link>
         ))}

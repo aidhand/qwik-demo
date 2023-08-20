@@ -7,7 +7,7 @@ interface PageHeadProps extends HTMLAttributes<HTMLDivElement> {
 
 export const PageHead = component$<PageHeadProps>((props) => {
   return (
-    <div class="flex py-2 justify-between items-center gap-4">
+    <div class="container mx-auto flex my-4 py-4 justify-between items-center gap-4 border-b b-gray-200">
       <h1 class="text-lg font-medium">{props.title}</h1>
       <span>
         <Slot />
