@@ -8,9 +8,11 @@ WORKDIR /srv/app
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 
+# Install pnpm
+RUN npm install -g pnpm
+
 # Install dependencies
 USER node
-RUN npm install -g pnpm
 RUN pnpm install
 
 # Copy source code
