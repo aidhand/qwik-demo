@@ -15,9 +15,6 @@ export const SiteHead = component$(() => {
           <Link href="/schedule" class="p-2">
             Schedule
           </Link>
-          <Link href="/settings" class="p-2">
-            Settings
-          </Link>
         </nav>
       </div>
     </header>

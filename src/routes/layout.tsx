@@ -1,6 +1,5 @@
 import type { DocumentHead, RequestHandler } from "@builder.io/qwik-city";
 import { component$, Slot } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
 import { SiteHead } from "~/components/site/head";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
@@ -14,11 +13,15 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
   });
 };
 
-export const useServerTimeLoader = routeLoader$(() => {
-  return {
-    date: new Date().toISOString(),
-  };
-});
+// export const onRequest: RequestHandler = async (requestEvent) => {
+//   const user = requestEvent.cookie.get("auth_token");
+
+//   if (user) {
+//     console.log("User is logged in");
+//   } else {
+//     console.log("User is not logged in");
+//   }
+// };
 
 export default component$(() => {
   return (

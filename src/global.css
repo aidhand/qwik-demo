@@ -1,0 +1,5 @@
+@unocss all;
+
+html {
+  @apply font-sans;
+}

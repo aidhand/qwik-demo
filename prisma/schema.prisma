@@ -2,33 +2,45 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "cockroachdb"
+//   url      = env("ROACH_URL")
+// }
+
+// enum crdb_internal_region {
+//   gcp_asia_southeast1 @map("gcp-asia-southeast1")
+//   gcp_europe_west1    @map("gcp-europe-west1")
+//   gcp_us_west2        @map("gcp-us-west2")
+// }
+
 datasource db {
-  provider = "cockroachdb"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
-enum crdb_internal_region {
-  gcp_asia_southeast1 @map("gcp-asia-southeast1")
-  gcp_europe_west1    @map("gcp-europe-west1")
-  gcp_us_west2        @map("gcp-us-west2")
+model User {
+  id        String   @id @default(uuid()) // @id @default(dbgenerated("gen_random_uuid()"))
+  email     String   @unique
+  name      String?
+  tokens    Token[]
+  units     Unit[]
+  notes     Note[]
+  tasks     Task[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model User {
-  id          String       @id @default(dbgenerated("gen_random_uuid()"))
-  email       String       @unique
-  name        String?
-  units       Unit[]
-  events      Event[]
-  notes       Note[]
-  tasks       Task[]
-  definitions Definition[]
-  assessments Assessment[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+model Token {
+  id        String   @id @default(uuid()) // @id @default(dbgenerated("gen_random_uuid()"))
+  token     String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Unit {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  id        String   @id @default(uuid()) // @id @default(dbgenerated("gen_random_uuid()"))
   code      String
   name      String
   user      User     @relation(fields: [userId], references: [id])
@@ -38,7 +50,7 @@ model Unit {
 }
 
 model Task {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  id        String   @id @default(uuid()) // @id @default(dbgenerated("gen_random_uuid()"))
   name      String
   content   String?
   completed Boolean  @default(false)
@@ -49,37 +61,7 @@ model Task {
 }
 
 model Note {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
-  name      String
-  content   String?
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Definition {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
-  name      String
-  content   String?
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Event {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
-  name      String
-  content   String?
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Assessment {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  id        String   @id @default(uuid()) // @id @default(dbgenerated("gen_random_uuid()"))
   name      String
   content   String?
   user      User     @relation(fields: [userId], references: [id])
